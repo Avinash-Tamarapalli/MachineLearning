@@ -13,7 +13,6 @@ Based on the provided snippet, it appears to be a portion of a dataset related t
 
 1. **Data Loading and Cleaning:**
 
-
    Load the data into a Pandas DataFrame.
 
    ```
@@ -42,9 +41,7 @@ Based on the provided snippet, it appears to be a portion of a dataset related t
       df.head()
    ```
 
-   ![](assets\20241228_173304_image.png)
-
-
+   ![](assets/20241228_173304_image.png)
 
    Handle missing values (NaNs) appropriately. Consider imputation techniques or dropping rows/columns based on the extent of missing data.
 
@@ -70,27 +67,25 @@ Based on the provided snippet, it appears to be a portion of a dataset related t
    df.head()
    ```
 
-   ![](assets\20241228_180208_image.png)
+   ![](assets/20241228_180208_image.png)
 
    ```
    df['job'] = df['job'].fillna(df['job'].mode()[0])
    df['education'] = df['education'].fillna(df['education'].mode()[0])
    ```
 
-   ![](assets\20241228_181855_image.png)
-
-
+   ![](assets/20241228_181855_image.png)
 
    Check for data type consistency and convert data types as needed (e.g., 'age' to integer, 'balance' to float).
-
 
    2. **Univariate Analysis:**
 
       * **Summary Statistics:** Calculate descriptive statistics (mean, median, quartiles, standard deviation) for numerical variables like 'age', 'balance', and 'duration'.
+
         ```
         df.describe()
         ```
-        
+        ![](assets/20241229_075744_describe.png)
       * **Data Visualization:**
 
         * **Histograms:** Visualize the distribution of numerical variables.
