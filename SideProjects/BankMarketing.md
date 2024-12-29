@@ -13,73 +13,86 @@ Based on the provided snippet, it appears to be a portion of a dataset related t
 
 1. **Data Loading and Cleaning:**
 
-   * Load the data into a Pandas DataFrame.
 
-     ```
+   Load the data into a Pandas DataFrame.
 
-        from ucimlrepo import fetch_ucirepo 
+   ```
 
-        # fetch dataset 
-        BankMarketing = fetch_ucirepo(id=222) 
+      from ucimlrepo import fetch_ucirepo 
 
-        # data (as pandas dataframes) 
-        X = BankMarketing.data.features 
-        y = BankMarketing.data.targets 
+      # fetch dataset 
+      BankMarketing = fetch_ucirepo(id=222) 
 
-        # metadata 
-        # print(BankMarketing.metadata) 
+      # data (as pandas dataframes) 
+      X = BankMarketing.data.features 
+      y = BankMarketing.data.targets 
 
-        # variable information 
-        # print(BankMarketing.variables) 
+      # metadata 
+      # print(BankMarketing.metadata) 
 
-        print(type(BankMarketing.data.features))
-     ```
+      # variable information 
+      # print(BankMarketing.variables) 
 
-     ```
+      print(type(BankMarketing.data.features))
+   ```
 
-        df = pd.concat([BankMarketing.data.features, BankMarketing.data.targets], axis= 1)
-        df.head()
-     ```
+   ```
 
-     ![](assets\20241228_173304_image.png)
-   * Handle missing values (NaNs) appropriately. Consider imputation techniques or dropping rows/columns based on the extent of missing data.
+      df = pd.concat([BankMarketing.data.features, BankMarketing.data.targets], axis= 1)
+      df.head()
+   ```
 
-     ```
-     df = df.drop('contact', axis= 1)
-     ```
+   ![](assets\20241228_173304_image.png)
 
-     ```
-       for column in [column for column in df.columns if df[column].isnull().any()]:
-           nulls = df[column].isnull().sum()
-           non_nulls = (df.shape[0]) - (df[column].isnull().sum())
-           print(f'{column} has {nulls} null and {non_nulls} non null values')
-     ```
 
-     > *job has 288 null and 44923 non null values
-     > education has 1857 null and 43354 non null values
-     > contact has 13020 null and 32191 non null values
-     > poutcome has 36959 null and 8252 non null values*
-     >
 
-     ```
-     df.drop(['contact', 'poutcome'], axis= 1, inplace= True)
-     df.head()
-     ```
+   Handle missing values (NaNs) appropriately. Consider imputation techniques or dropping rows/columns based on the extent of missing data.
 
-     ![](assets\20241228_180208_image.png)
+   ```
+   df = df.drop('contact', axis= 1)
+   ```
 
-     ```
-     df['job'] = df['job'].fillna(df['job'].mode()[0])
-     df['education'] = df['education'].fillna(df['education'].mode()[0])
-     ```
+   ```
+     for column in [column for column in df.columns if df[column].isnull().any()]:
+         nulls = df[column].isnull().sum()
+         non_nulls = (df.shape[0]) - (df[column].isnull().sum())
+         print(f'{column} has {nulls} null and {non_nulls} non null values')
+   ```
 
-     ![](assets\20241228_181855_image.png)
-   * Check for data type consistency and convert data types as needed (e.g., 'age' to integer, 'balance' to float).
+   > *job has 288 null and 44923 non null values
+   > education has 1857 null and 43354 non null values
+   > contact has 13020 null and 32191 non null values
+   > poutcome has 36959 null and 8252 non null values*
+   >
+
+   ```
+   df.drop(['contact', 'poutcome'], axis= 1, inplace= True)
+   df.head()
+   ```
+
+   ![](assets\20241228_180208_image.png)
+
+   ```
+   df['job'] = df['job'].fillna(df['job'].mode()[0])
+   df['education'] = df['education'].fillna(df['education'].mode()[0])
+   ```
+
+   ![](assets\20241228_181855_image.png)
+
+
+
+   Check for data type consistency and convert data types as needed (e.g., 'age' to integer, 'balance' to float).
+
 
    2. **Univariate Analysis:**
 
       * **Summary Statistics:** Calculate descriptive statistics (mean, median, quartiles, standard deviation) for numerical variables like 'age', 'balance', and 'duration'.
+        ```
+        df.describe()
+        ```
+        
       * **Data Visualization:**
+
         * **Histograms:** Visualize the distribution of numerical variables.
         * **Bar Charts:** Plot the frequency of categorical variables like 'job', 'marital', 'education', 'contact', 'day_of_week', and 'month'.
         * **Box Plots:** Identify outliers in numerical variables.
