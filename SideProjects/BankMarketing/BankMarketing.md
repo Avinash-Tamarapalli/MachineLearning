@@ -56,10 +56,10 @@ Based on the provided snippet, it appears to be a portion of a dataset related t
          print(f'{column} has {nulls} null and {non_nulls} non null values')
    ```
 
-   > * job has 288 null and 44923 non null values
-   > * education has 1857 null and 43354 non null values
-   > * contact has 13020 null and 32191 non null values
-   > * poutcome has 36959 null and 8252 non null values
+   > job has 288 null and 44923 non null values  
+   > education has 1857 null and 43354 non null values  
+   > contact has 13020 null and 32191 non null values  
+   > poutcome has 36959 null and 8252 non null values
    >
 
    ```
